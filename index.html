@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FAINOVA — منصتك للأسواق والتحليل</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,"Tahoma",sans-serif;
+  background:#f7faff;
+  color:#1d2940;
+}
+
+/* =========================
+   الواجهة الرئيسية
+========================= */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:40px 20px 90px;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(155,190,255,.32),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(202,173,255,.28),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #eef5ff 50%,
+      #f8f1ff
+    );
+}
+
+/* موجات الخلفية */
+
+.hero::before{
+  content:"";
+  position:absolute;
+
+  width:900px;
+  height:280px;
+
+  border:2px solid rgba(105,135,225,.12);
+
+  border-radius:50%;
+
+  transform:rotate(-13deg);
+
+  top:8%;
+  left:-280px;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+
+  width:1000px;
+  height:300px;
+
+  border:2px solid rgba(148,111,220,.10);
+
+  border-radius:50%;
+
+  transform:rotate(12deg);
+
+  bottom:5%;
+  right:-330px;
+}
+
+/* تأثير التركيز */
+
+.focus{
+  position:absolute;
+
+  width:190px;
+  height:190px;
+
+  border:1px solid rgba(91,121,211,.18);
+
+  border-radius:38px;
+
+  top:14%;
+  right:12%;
+
+  transform:rotate(15deg);
+}
+
+.focus::before,
+.focus::after{
+  content:"";
+  position:absolute;
+
+  width:28px;
+  height:28px;
+
+  border-color:#8198e6;
+  border-style:solid;
+}
+
+.focus::before{
+  top:-1px;
+  right:-1px;
+
+  border-width:2px 2px 0 0;
+}
+
+.focus::after{
+  bottom:-1px;
+  left:-1px;
+
+  border-width:0 0 2px 2px;
+}
+
+.focus2{
+  position:absolute;
+
+  width:145px;
+  height:145px;
+
+  border:1px solid rgba(145,105,218,.13);
+
+  border-radius:30px;
+
+  bottom:15%;
+  left:11%;
+
+  transform:rotate(-18deg);
+}
+
+/* محتوى الواجهة */
+
+.hero-content{
+  position:relative;
+  z-index:5;
+
+  max-width:900px;
+}
+
+/* الشعار */
+
+.logo-mark{
+  width:82px;
+  height:82px;
+
+  margin:0 auto 18px;
+
+  border-radius:25px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:42px;
+  font-weight:900;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6d8df5,
+      #9a72e8
+    );
+
+  box-shadow:
+    0 18px 45px rgba(111,130,225,.25);
+}
+
+.logo{
+  font-size:clamp(48px,9vw,88px);
+
+  font-weight:900;
+
+  letter-spacing:4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #5d7ff0,
+      #916ee1
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-line{
+  width:100px;
+  height:4px;
+
+  margin:25px auto;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7692ee,
+      #a17be5
+    );
+}
+
+.hero h1{
+  margin-top:18px;
+
+  font-size:clamp(25px,4vw,40px);
+
+  color:#26324c;
+}
+
+.hero p{
+  margin:15px auto 0;
+
+  max-width:700px;
+
+  color:#68748c;
+
+  font-size:18px;
+
+  line-height:1.9;
+}
+
+.enter-btn{
+  margin-top:32px;
+
+  padding:15px 38px;
+
+  border:0;
+
+  border-radius:14px;
+
+  color:white;
+
+  font-size:16px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6d8df5,
+      #9170df
+    );
+
+  box-shadow:
+    0 12px 30px rgba(111,130,225,.25);
+
+  transition:.25s;
+}
+
+.enter-btn:hover{
+  transform:translateY(-3px);
+}
+
+/* =========================
+   الخانات الرئيسية
+========================= */
+
+.sections{
+  padding:85px 6%;
+
+  background:#ffffff;
+}
+
+.section-title{
+  text-align:center;
+
+  margin-bottom:45px;
+}
+
+.section-title h2{
+  font-size:32px;
+
+  color:#202b43;
+}
+
+.section-title p{
+  margin-top:10px;
+
+  color:#7b879d;
+}
+
+.main-cards{
+  max-width:1200px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:22px;
+}
+
+.main-card{
+  position:relative;
+
+  padding:35px 25px;
+
+  min-height:245px;
+
+  border:
+    1px solid
+    rgba(125,145,205,.18);
+
+  border-radius:24px;
+
+  background:
+    rgba(255,255,255,.72);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:
+    0 15px 45px
+    rgba(77,100,160,.08);
+
+  text-align:center;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.main-card:hover{
+  transform:translateY(-7px);
+
+  box-shadow:
+    0 22px 55px
+    rgba(77,100,160,.14);
+}
+
+.card-icon{
+  width:65px;
+  height:65px;
+
+  margin:0 auto 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:20px;
+
+  font-size:28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf3ff,
+      #f5edff
+    );
+
+  border:
+    1px solid
+    rgba(120,140,210,.15);
+}
+
+.main-card h3{
+  font-size:21px;
+
+  color:#26324b;
+
+  margin-bottom:10px;
+}
+
+.main-card p{
+  color:#7a859a;
+
+  line-height:1.7;
+}
+
+/* =========================
+   اللوحات
+========================= */
+
+.dashboard{
+  display:none;
+
+  padding:35px 5%;
+
+  background:#f7faff;
+
+  min-height:100vh;
+}
+
+.dashboard.active{
+  display:block;
+}
+
+.dashboard-header{
+  max-width:1200px;
+
+  margin:0 auto 25px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:15px;
+}
+
+.dashboard-header h2{
+  color:#202b43;
+
+  font-size:30px;
+}
+
+.back-btn{
+  border:
+    1px solid
+    #dce4f5;
+
+  background:white;
+
+  color:#53617b;
+
+  padding:10px 18px;
+
+  border-radius:11px;
+
+  cursor:pointer;
+}
+
+/* =========================
+   الأسواق
+========================= */
+
+.market-grid{
+  max-width:1200px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:16px;
+}
+
+.market-card{
+  background:white;
+
+  border:
+    1px solid
+    #e3e9f6;
+
+  border-radius:18px;
+
+  padding:20px;
+
+  box-shadow:
+    0 8px 25px
+    rgba(65,86,140,.06);
+}
+
+.market-card small{
+  color:#7b879c;
+}
+
+.market-card h3{
+  margin:10px 0;
+
+  font-size:22px;
+}
+
+.up{
+  color:#27a878;
+
+  font-weight:bold;
+}
+
+.down{
+  color:#e05268;
+
+  font-weight:bold;
+}
+
+.neutral{
+  color:#7b8494;
+
+  font-weight:bold;
+}
+
+/* =========================
+   لوحة التحليل
+========================= */
+
+.analysis-box{
+  max-width:1050px;
+
+  margin:auto;
+
+  background:white;
+
+  border:
+    1px solid
+    #e1e7f3;
+
+  border-radius:22px;
+
+  padding:30px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(70,90,140,.07);
+}
+
+.analysis-step{
+  margin-bottom:25px;
+}
+
+.analysis-step h3{
+  margin-bottom:12px;
+
+  color:#27334d;
+}
+
+.asset-select{
+  width:100%;
+
+  padding:14px;
+
+  border-radius:12px;
+
+  border:
+    1px solid
+    #d9e1f0;
+
+  background:#fafcff;
+
+  color:#26324a;
+
+  font-size:16px;
+}
+
+.ai-request{
+  display:none;
+
+  margin-top:20px;
+
+  padding:22px;
+
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f1f6ff,
+      #faf5ff
+    );
+
+  border:
+    1px solid
+    #e0e5f5;
+}
+
+.ai-request.show{
+  display:block;
+}
+
+.ai-request h4{
+  color:#43547a;
+
+  margin-bottom:10px;
+
+  font-size:19px;
+}
+
+.ai-request p{
+  color:#68758d;
+
+  line-height:1.8;
+}
+
+.frames{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin:18px 0;
+}
+
+.frame{
+  padding:9px 15px;
+
+  border-radius:10px;
+
+  background:white;
+
+  border:
+    1px solid
+    #dce4f2;
+
+  color:#5b6982;
+}
+
+/* رفع الصور */
+
+.upload-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:15px;
+
+  margin-top:20px;
+}
+
+.upload-box{
+  min-height:160px;
+
+  border:
+    2px dashed
+    #cdd8ed;
+
+  border-radius:15px;
+
+  padding:25px 15px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  background:#fbfcff;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.upload-box:hover{
+  border-color:#8197df;
+
+  background:#f6f8ff;
+}
+
+.upload-box input{
+  display:none;
+}
+
+.upload-box span{
+  display:block;
+
+  color:#68758d;
+
+  line-height:1.7;
+}
+
+.preview{
+  max-width:100%;
+
+  max-height:120px;
+
+  border-radius:10px;
+
+  display:none;
+}
+
+.start-analysis{
+  margin-top:22px;
+
+  padding:14px 27px;
+
+  border:0;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6e8ef3,
+      #9273df
+    );
+
+  color:white;
+
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.start-analysis:hover{
+  opacity:.92;
+}
+
+.analysis-result{
+  display:none;
+
+  margin-top:25px;
+
+  padding:22px;
+
+  border-radius:17px;
+
+  background:#f8faff;
+
+  border:
+    1px solid
+    #e0e6f2;
+
+  line-height:1.9;
+}
+
+.analysis-result.show{
+  display:block;
+}
+
+/* =========================
+   الأخبار
+========================= */
+
+.news-list{
+  max-width:1000px;
+
+  margin:auto;
+
+  display:grid;
+
+  gap:14px;
+}
+
+.news-item{
+  background:white;
+
+  border:
+    1px solid
+    #e1e7f3;
+
+  border-radius:17px;
+
+  padding:20px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  align-items:center;
+}
+
+.news-title{
+  color:#303c55;
+
+  font-weight:bold;
+}
+
+.news-meta{
+  color:#8993a6;
+
+  font-size:13px;
+
+  margin-top:6px;
+}
+
+.impact{
+  padding:8px 13px;
+
+  border-radius:10px;
+
+  font-size:13px;
+
+  white-space:nowrap;
+}
+
+.high{
+  background:#fff0f2;
+
+  color:#d64f66;
+}
+
+.medium{
+  background:#fff8e8;
+
+  color:#b88622;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer{
+  text-align:center;
+
+  padding:30px;
+
+  background:#f4f7fc;
+
+  color:#8993a6;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:900px){
+
+  .main-cards{
+    grid-template-columns:1fr;
+  }
+
+  .market-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .upload-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:550px){
+
+  .hero{
+    padding:30px 16px 60px;
+  }
+
+  .logo{
+    font-size:45px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .sections{
+    padding:60px 18px;
+  }
+
+  .market-grid{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard{
+    padding:25px 16px;
+  }
+
+  .dashboard-header{
+    align-items:flex-start;
+
+    flex-direction:column;
+  }
+
+  .news-item{
+    flex-direction:column;
+
+    align-items:flex-start;
+  }
+
+  .analysis-box{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- ==================================================
+     الواجهة الرئيسية
+================================================== -->
+
+<section class="hero" id="home">
+
+  <div class="focus"></div>
+
+  <div class="focus2"></div>
+
+  <div class="hero-content">
+
+    <div class="logo-mark">
+      F
+    </div>
+
+    <div class="logo">
+      FAINOVA
+    </div>
+
+    <div class="hero-line"></div>
+
+    <h1>
+      الاستمرار هو سر النجاح
+    </h1>
+
+    <p>
+      مع فينوفا .. نصنع مستقبلك خطوة بخطوة
+      <br>
+      منصتك لمتابعة الأسواق والتحليل والأخبار
+    </p>
+
+    <button
+      class="enter-btn"
+      onclick="goToPanels()">
+
+      استكشف FAINOVA
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================================
+     الخانات الرئيسية
+================================================== -->
+
+<section
+  class="sections"
+  id="panels">
+
+  <div class="section-title">
+
+    <h2>
+      اختر اللوحة التي تريد الدخول إليها
+    </h2>
+
+    <p>
+      جميع أدوات FAINOVA في مكان واحد
+    </p>
+
+  </div>
+
+
+  <div class="main-cards">
+
+
+    <!-- الأسواق -->
+
+    <div
+      class="main-card"
+      onclick="openDashboard('markets')">
+
+      <div class="card-icon">
+        ◈
+      </div>
+
+      <h3>
+        لوحة الأسواق المالية
+      </h3>
+
+      <p>
+        متابعة حالة الأسواق والأصول
+        وحركة الأسعار والاتجاهات.
+      </p>
+
+    </div>
+
+
+    <!-- التحليل -->
+
+    <div
+      class="main-card"
+      onclick="openDashboard('analysis')">
+
+      <div class="card-icon">
+        ⌁
+      </div>
+
+      <h3>
+        لوحة التحليل
+      </h3>
+
+      <p>
+        تحليل متعدد الفريمات باستخدام
+        الشارتات والذكاء الاصطناعي.
+      </p>
+
+    </div>
+
+
+    <!-- الأخبار -->
+
+    <div
+      class="main-card"
+      onclick="openDashboard('news')">
+
+      <div class="card-icon">
+        ▤
+      </div>
+
+      <h3>
+        لوحة الأخبار
+      </h3>
+
+      <p>
+        متابعة الأخبار الاقتصادية
+        ووقت صدورها وتأثيرها المحتمل.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================================
+     لوحة الأسواق المالية
+================================================== -->
+
+<section
+  class="dashboard"
+  id="markets">
+
+  <div class="dashboard-header">
+
+    <h2>
+      لوحة الأسواق المالية
+    </h2>
+
+    <button
+      class="back-btn"
+      onclick="backHome()">
+
+      العودة للرئيسية
+
+    </button>
+
+  </div>
+
+
+  <div class="market-grid">
+
+
+    <div class="market-card">
+
+      <small>
+        الذهب XAU/USD
+      </small>
+
+      <h3>
+        $3,658.20
+      </h3>
+
+      <span class="up">
+        ▲ +1.24%
+      </span>
+
+    </div>
+
+
+    <div class="market-card">
+
+      <small>
+        Bitcoin BTC
+      </small>
+
+      <h3>
+        $116,420
+      </h3>
+
+      <span class="up">
+        ▲ +2.18%
+      </span>
+
+    </div>
+
+
+    <div class="market-card">
+
+      <small>
+        EUR/USD
+      </small>
+
+      <h3>
+        1.1742
+      </h3>
+
+      <span class="down">
+        ▼ -0.34%
+      </span>
+
+    </div>
+
+
+    <div class="market-card">
+
+      <small>
+        S&P 500
+      </small>
+
+      <h3>
+        6,631.96
+      </h3>
+
+      <span class="up">
+        ▲ +0.72%
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================================
+     لوحة التحليل الذكي
+================================================== -->
+
+<section
+  class="dashboard"
+  id="analysis">
+
+  <div class="dashboard-header">
+
+    <h2>
+      لوحة التحليل الذكي
+    </h2>
+
+    <button
+      class="back-btn"
+      onclick="backHome()">
+
+      العودة للرئيسية
+
+    </button>
+
+  </div>
+
+
+  <div class="analysis-box">
+
+
+    <div class="analysis-step">
+
+      <h3>
+        1 — اختر الأداة التي تريد تحليلها
+      </h3>
+
+      <select
+        class="asset-select"
+        id="assetSelect">
+
+        <option value="">
+          اختر الأداة
+        </option>
+
+        <option value="gold">
+          الذهب — XAU/USD
+        </option>
+
+        <option value="silver">
+          الفضة — XAG/USD
+        </option>
+
+        <option value="forex">
+          الفوركس
+        </option>
+
+        <option value="bitcoin">
+          Bitcoin — BTC/USD
+        </option>
+
+        <option value="sp500">
+          S&P 500
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- طلب الذكاء الاصطناعي -->
+
+    <div
+      class="ai-request"
+      id="aiRequest">
+
+      <h4>
+        الذكاء الاصطناعي يحدد الفريمات المطلوبة
+      </h4>
+
+      <p>
+        بعد اختيار الأداة، سيحدد نظام التحليل
+        تلقائياً 3 فريمات مناسبة للتحليل متعدد الفريمات.
+      </p>
+
+
+      <div
+        class="frames"
+        id="frames">
+
+      </div>
+
+
+      <p>
+        ارفع 3 صور واضحة للشارت،
+        صورة لكل فريم يطلبه النظام.
+      </p>
+
+
+      <!-- رفع الصور -->
+
+      <div class="upload-grid">
+
+
+        <label class="upload-box">
+
+          <input
+            type="file"
+            accept="image/*"
+            id="image1"
+            onchange="previewImage(this,'preview1')">
+
+          <span id="text1">
+            الصورة الأولى
+            <br>
+            اضغط لاختيار صورة الشارت
+          </span>
+
+          <img
+            id="preview1"
+            class="preview">
+
+        </label>
+
+
+        <label class="upload-box">
+
+          <input
+            type="file"
+            accept="image/*"
+            id="image2"
+            onchange="previewImage(this,'preview2')">
+
+          <span id="text2">
+            الصورة الثانية
+            <br>
+            اضغط لاختيار صورة الشارت
+          </span>
+
+          <img
+            id="preview2"
+            class="preview">
+
+        </label>
+
+
+        <label class="upload-box">
+
+          <input
+            type="file"
+            accept="image/*"
+            id="image3"
+            onchange="previewImage(this,'preview3')">
+
+          <span id="text3">
+            الصورة الثالثة
+            <br>
+            اضغط لاختيار صورة الشارت
+          </span>
+
+          <img
+            id="preview3"
+            class="preview">
+
+        </label>
+
+      </div>
+
+
+      <button
+        class="start-analysis"
+        onclick="prepareAnalysis()">
+
+        بدء التحليل الذكي
+
+      </button>
+
+
+      <!-- نتيجة مؤقتة إلى حين ربط API -->
+
+      <div
+        class="analysis-result"
+        id="analysisResult">
+
+        <h4>
+          تم تجهيز التحليل
+        </h4>
+
+        <p>
+          تم استلام الصور الثلاث وتجهيزها
+          للتحليل متعدد الفريمات.
+        </p>
+
+        <br>
+
+        <p>
+          عند ربط API سيتم إرسال الصور إلى
+          نموذج الذكاء الاصطناعي لتحليلها معاً.
+        </p>
+
+        <br>
+
+        <p>
+          يمكن أن تتضمن النتيجة:
+          الاتجاه العام، الزخم، الدعم والمقاومة،
+          المناطق المهمة والسيناريوهات المحتملة.
+        </p>
+
+        <br>
+
+        <p>
+          <strong>
+            تنبيه:
+          </strong>
+
+          التحليل معلوماتي وليس توصية مالية.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================================
+     لوحة الأخبار
+================================================== -->
+
+<section
+  class="dashboard"
+  id="news">
+
+  <div class="dashboard-header">
+
+    <h2>
+      لوحة الأخبار
+    </h2>
+
+    <button
+      class="back-btn"
+      onclick="backHome()">
+
+      العودة للرئيسية
+
+    </button>
+
+  </div>
+
+
+  <div class="news-list">
+
+
+    <div class="news-item">
+
+      <div>
+
+        <div class="news-title">
+          تحركات جديدة في أسواق الذهب
+        </div>
+
+        <div class="news-meta">
+          وقت الخبر: سيتم ربطه بمصدر الأخبار
+        </div>
+
+      </div>
+
+      <span class="impact high">
+        تأثير مرتفع
+      </span>
+
+    </div>
+
+
+    <div class="news-item">
+
+      <div>
+
+        <div class="news-title">
+          الدولار يتحرك أمام العملات الرئيسية
+        </div>
+
+        <div class="news-meta">
+          وقت الخبر: سيتم ربطه بمصدر الأخبار
+        </div>
+
+      </div>
+
+      <span class="impact medium">
+        تأثير متوسط
+      </span>
+
+    </div>
+
+
+    <div class="news-item">
+
+      <div>
+
+        <div class="news-title">
+          ارتفاع نشاط سوق العملات الرقمية
+        </div>
+
+        <div class="news-meta">
+          وقت الخبر: سيتم ربطه بمصدر الأخبار
+        </div>
+
+      </div>
+
+      <span class="impact medium">
+        تأثير متوسط
+      </span>
+
+    </div>
+
+
+    <div class="news-item">
+
+      <div>
+
+        <div class="news-title">
+          المستثمرون يراقبون البيانات الاقتصادية
+        </div>
+
+        <div class="news-meta">
+          وقت الخبر: سيتم ربطه بمصدر الأخبار
+        </div>
+
+      </div>
+
+      <span class="impact high">
+        تأثير مرتفع
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  FAINOVA © 2026
+  <br>
+  الاستمرار هو سر النجاح
+
+</footer>
+
+
+<script>
+
+/* ==================================================
+   التنقل
+================================================== */
+
+function goToPanels(){
+
+  document
+    .getElementById("panels")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* فتح لوحة */
+
+function openDashboard(id){
+
+  document
+    .querySelectorAll(".dashboard")
+    .forEach(function(panel){
+
+      panel.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById("home")
+    .style.display="none";
+
+  document
+    .getElementById("panels")
+    .style.display="none";
+
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* العودة */
+
+function backHome(){
+
+  document
+    .querySelectorAll(".dashboard")
+    .forEach(function(panel){
+
+      panel.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById("home")
+    .style.display="flex";
+
+  document
+    .getElementById("panels")
+    .style.display="block";
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* ==================================================
+   اختيار الأداة
+================================================== */
+
+const assetSelect =
+  document.getElementById("assetSelect");
+
+const aiRequest =
+  document.getElementById("aiRequest");
+
+const frames =
+  document.getElementById("frames");
+
+
+assetSelect.addEventListener(
+  "change",
+  function(){
+
+    const asset =
+      this.value;
+
+    if(!asset){
+
+      aiRequest.classList.remove("show");
+
+      frames.innerHTML="";
+
+      return;
+    }
+
+
+    aiRequest.classList.add("show");
+
+
+    /*
+      مؤقتاً:
+      هذه الفريمات تجريبية.
+
+      بعد ربط API:
+      الذكاء الاصطناعي هو الذي سيحدد
+      الفريمات الثلاثة ديناميكياً.
+    */
+
+    const selectedFrames =
+      getSuggestedFrames(asset);
+
+
+    frames.innerHTML="";
+
+
+    selectedFrames.forEach(
+      function(frame){
+
+        const element =
+          document.createElement("div");
+
+        element.className="frame";
+
+        element.textContent =
+          frame;
+
+        frames.appendChild(element);
+
+      }
+    );
+
+  }
+);
+
+
+/* ==================================================
+   الفريمات المؤقتة
+================================================== */
+
+function getSuggestedFrames(asset){
+
+  /*
+    هذه ليست نتيجة AI حقيقية.
+    سيتم استبدالها بالـAPI لاحقاً.
+  */
+
+  if(asset==="gold"){
+    return [
+      "5 دقائق",
+      "15 دقيقة",
+      "ساعة"
+    ];
+  }
+
+  if(asset==="silver"){
+    return [
+      "5 دقائق",
+      "15 دقيقة",
+      "ساعة"
+    ];
+  }
+
+  if(asset==="forex"){
+    return [
+      "5 دقائق",
+      "15 دقيقة",
+      "ساعة"
+    ];
+  }
+
+  if(asset==="bitcoin"){
+    return [
+      "15 دقيقة",
+      "ساعة",
+      "4 ساعات"
+    ];
+  }
+
+  if(asset==="sp500"){
+    return [
+      "15 دقيقة",
+      "ساعة",
+      "4 ساعات"
+    ];
+  }
+
+  return [
+    "الفريم الأول",
+    "الفريم الثاني",
+    "الفريم الثالث"
+  ];
+
+}
+
+
+/* ==================================================
+   معاينة الصور
+================================================== */
+
+function previewImage(input,previewId){
+
+  const preview =
+    document.getElementById(previewId);
+
+  const file =
+    input.files[0];
+
+  if(!file){
+
+    preview.style.display="none";
+
+    return;
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(event){
+
+      preview.src =
+        event.target.result;
+
+      preview.style.display="block";
+
+    };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* ==================================================
+   بدء التحليل
+================================================== */
+
+function prepareAnalysis(){
+
+  const image1 =
+    document.getElementById("image1").files[0];
+
+  const image2 =
+    document.getElementById("image2").files[0];
+
+  const image3 =
+    document.getElementById("image3").files[0];
+
+
+  if(!image1 || !image2 || !image3){
+
+    alert(
+      "يرجى رفع الصور الثلاث المطلوبة للشارت."
+    );
+
+    return;
+  }
+
+
+  /*
+    =================================================
+    نقطة ربط API لاحقاً
+    =================================================
+
+    هنا سنرسل:
+
+    - الأداة
+    - الصورة الأولى
+    - الصورة الثانية
+    - الصورة الثالثة
+
+    إلى الباك إند.
+
+    مثال مستقبلي:
+
+    fetch("/api/analyze", {
+      method:"POST",
+      body:formData
+    })
+
+    ولا نضع مفتاح API داخل هذا الملف.
+  */
+
+
+  document
+    .getElementById("analysisResult")
+    .classList.add("show");
+
+
+  document
+    .getElementById("analysisResult")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+}
+
+
+/* ==================================================
+   تشغيل
+================================================== */
+
+console.log(
+  "FAINOVA loaded successfully"
+);
+
+</script>
+
+</body>
+</html>
